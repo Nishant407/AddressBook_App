@@ -1,15 +1,13 @@
 package com.example.AddressBook.service;
 
 import com.example.AddressBook.dto.AddressBookDTO;
-import com.example.AddressBook.exceptions.AddressBookNotFoundException;
+import com.example.AddressBook.exceptions.AddressBookException;
 import com.example.AddressBook.model.AddressBook;
 import com.example.AddressBook.repository.AddressBookRepository;
-import com.example.AddressBook.service.IAddressBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AddressBookServiceImpl implements IAddressBookService {
@@ -32,7 +30,7 @@ public class AddressBookServiceImpl implements IAddressBookService {
 
     @Override
     public AddressBook getEntryById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new AddressBookNotFoundException("Entry not found"));
+        return repository.findById(id).orElseThrow(() -> new AddressBookException("Entry not found"));
     }
 
     @Override
